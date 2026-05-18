@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>直播品牌主题化 — 精简展示版</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: #060a10;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      color: #E8EDF4;
+    }
+
+    /* ── slide frame ── */
+    .slide {
+      width: 100%; max-width: 960px; min-height: 540px;
+      margin: 0 auto;
+      position: relative;
+      display: flex; flex-direction: column;
+    }
+    .slide + .slide { border-top: 1px solid #111D30; }
+
+    /* ── utility ── */
+    .bg-surface { background: #0A1628; }
+    .bg-grad    { background: linear-gradient(160deg, #0A1628 0%, #122040 50%, #1a3a6b 100%); }
+    .gold  { color: #C8A96E; }
+    .muted { color: #8BA4C4; }
+    .dim   { color: #5A7A9E; }
+    .white { color: #fff; }
+    .serif { font-family: Georgia, 'Times New Roman', serif; }
+    .center-xy { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .row { display: flex; flex-direction: row; }
+    .col { display: flex; flex-direction: column; }
+    .gap-8  { gap: 8px; }
+    .gap-10 { gap: 10px; }
+    .gap-14 { gap: 14px; }
+    .gap-16 { gap: 16px; }
+    .gap-20 { gap: 20px; }
+    .gap-24 { gap: 24px; }
+    .items-center { align-items: center; }
+    .items-stretch { align-items: stretch; }
+    .justify-center { justify-content: center; }
+    .text-center { text-align: center; }
+    .flex-1 { flex: 1; }
+    .rounded { border-radius: 8px; }
+
+    .card { background: #111D30; border-radius: 8px; }
+    .card-alt { background: #152238; border-radius: 8px; }
+    .card-glow { background: linear-gradient(135deg, #1a3a6b 0%, #111D30 100%); border-radius: 8px; }
+
+    .corner-tl, .corner-br { position: absolute; }
+    .corner-tl::before, .corner-tl::after,
+    .corner-br::before, .corner-br::after { content: ''; position: absolute; background: #C8A96E; }
+    .corner-tl { top: 0; left: 0; }
+    .corner-tl::before { width: 5px; height: 160px; top: 0; left: 0; }
+    .corner-tl::after  { width: 100px; height: 5px; top: 0; left: 0; }
+    .corner-br { bottom: 0; right: 0; }
+    .corner-br::before { width: 5px; height: 160px; bottom: 0; right: 0; }
+    .corner-br::after  { width: 100px; height: 5px; bottom: 0; right: 0; }
+
+    .slide-head { padding: 28px 40px 0; flex-shrink: 0; }
+    .slide-head .num { font-size: 10px; letter-spacing: 4px; color: #C8A96E; margin-bottom: 6px; }
+    .slide-head h2 { font-family: Georgia, serif; font-size: 28px; color: #fff; font-weight: 700; }
+    .slide-body { padding: 20px 40px 28px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+
+    /* ── responsive ── */
+    @media (max-width: 720px) {
+      .row.resp { flex-direction: column; }
+      .slide-head { padding: 20px 20px 0; }
+      .slide-body { padding: 16px 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ============================== 01  COVER ============================== -->
+<section class="slide bg-grad center-xy" style="min-height: 540px; padding: 80px;">
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+  <div class="col" style="gap: 24px;">
+    <p style="font-size: 11px; letter-spacing: 6px;" class="gold">MEITUAN LIVE DESIGN</p>
+    <h1 class="serif white" style="font-size: 42px; line-height: 1.15; letter-spacing: 1px;">直播品牌主题化</h1>
+    <p class="serif dim" style="font-size: 20px;">广场高亮卡与间内品牌定制</p>
+    <div style="width: 48px; height: 2px; background: #C8A96E;"></div>
+    <p class="dim" style="font-size: 12px;">美团平台设计中心 · 2026 Q1-Q2</p>
+  </div>
+</section>
+
+<!-- ============================== 02  PROBLEM ============================== -->
+<section class="slide bg-surface">
+  <div class="slide-head">
+    <p class="num">01</p>
+    <h2>问题</h2>
+  </div>
+  <div class="slide-body gap-24">
+    <div class="row resp gap-20 items-center">
+      <div class="col gap-10" style="flex: 1;">
+        <p class="serif gold" style="font-size: 48px; line-height: 1; font-weight: 700;">215<span class="muted" style="font-size: 18px;">万</span></p>
+        <p class="muted" style="font-size: 12px;">Q1 品牌营销收入</p>
+        <p class="dim" style="font-size: 11px;">但设计基础设施严重缺位</p>
+      </div>
+      <div style="width: 1px; background: #1E3454; align-self: stretch;"></div>
+      <div class="col gap-16" style="flex: 1;">
+        <div class="col" style="gap: 4px;">
+          <p class="white" style="font-size: 14px; font-weight: 700;">广场 — 品牌"被看见"不足</p>
+          <p class="dim" style="font-size: 11px;">卡片统一样式，无差异化手段</p>
+        </div>
+        <div class="col" style="gap: 4px;">
+          <p class="white" style="font-size: 14px; font-weight: 700;">间内 — 品牌"被记住"断裂</p>
+          <p class="dim" style="font-size: 11px;">每次从零设计，沉浸感中断</p>
+        </div>
+      </div>
+    </div>
+    <div class="card rounded text-center" style="padding: 16px 20px;">
+      <p style="font-size: 13px;">核心矛盾：<span class="gold" style="font-weight: 700;">品牌表达力</span> vs <span class="gold" style="font-weight: 700;">系统稳定性 / 规模化效率</span></p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 03  GOALS ============================== -->
+<section class="slide bg-surface">
+  <div class="slide-head">
+    <p class="num">02</p>
+    <h2>设计目标</h2>
+  </div>
+  <div class="slide-body justify-center">
+    <div class="row resp gap-16 items-stretch">
+      <div class="card flex-1 col items-center text-center" style="padding: 32px 20px; gap: 12px; border-top: 3px solid #C8A96E;">
+        <p class="serif gold" style="font-size: 36px; font-weight: 700;">01</p>
+        <p class="white" style="font-size: 15px; font-weight: 700;">视觉辨识度</p>
+        <p class="dim" style="font-size: 11px;">广场品牌差异化表达</p>
+      </div>
+      <div class="card flex-1 col items-center text-center" style="padding: 32px 20px; gap: 12px; border-top: 3px solid #C8A96E;">
+        <p class="serif gold" style="font-size: 36px; font-weight: 700;">02</p>
+        <p class="white" style="font-size: 15px; font-weight: 700;">设计提效</p>
+        <p class="dim" style="font-size: 11px;">5-7天 → 2天</p>
+      </div>
+      <div class="card flex-1 col items-center text-center" style="padding: 32px 20px; gap: 12px; border-top: 3px solid #C8A96E;">
+        <p class="serif gold" style="font-size: 36px; font-weight: 700;">03</p>
+        <p class="white" style="font-size: 15px; font-weight: 700;">全链路沉浸</p>
+        <p class="dim" style="font-size: 11px;">广场 → 间内 → 货架</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 04  STRATEGY OVERVIEW ============================== -->
+<section class="slide bg-surface">
+  <div class="slide-head">
+    <p class="num">03</p>
+    <h2>三层策略</h2>
+  </div>
+  <div class="slide-body gap-16 justify-center">
+    <div class="row resp gap-10 items-center">
+      <div class="card flex-1" style="padding: 24px; border-left: 4px solid #C8A96E;">
+        <p class="gold" style="font-size: 11px; letter-spacing: 2px; margin-bottom: 8px;">策略一</p>
+        <p class="white" style="font-size: 18px; font-weight: 700; margin-bottom: 4px;">分层解耦高亮卡</p>
+        <p class="dim" style="font-size: 11px;">三层分离架构，平衡表达与稳定</p>
+      </div>
+      <p class="dim" style="font-size: 20px;">→</p>
+      <div class="card flex-1" style="padding: 24px; border-left: 4px solid #C8A96E;">
+        <p class="gold" style="font-size: 11px; letter-spacing: 2px; margin-bottom: 8px;">策略二</p>
+        <p class="white" style="font-size: 18px; font-weight: 700; margin-bottom: 4px;">间内组件体系</p>
+        <p class="dim" style="font-size: 11px;">7 组件 + 特殊时刻动画</p>
+      </div>
+      <p class="dim" style="font-size: 20px;">→</p>
+      <div class="card flex-1" style="padding: 24px; border-left: 4px solid #C8A96E;">
+        <p class="gold" style="font-size: 11px; letter-spacing: 2px; margin-bottom: 8px;">策略三</p>
+        <p class="white" style="font-size: 18px; font-weight: 700; margin-bottom: 4px;">参数化规范</p>
+        <p class="dim" style="font-size: 11px;">配置化接入，开放承接</p>
+      </div>
+    </div>
+    <div class="row resp gap-10">
+      <div class="flex-1 text-center" style="padding: 12px; background: rgba(200,169,110,0.04); border-radius: 6px;">
+        <p class="muted" style="font-size: 11px;">被看见</p>
+      </div>
+      <div style="width: 32px;"></div>
+      <div class="flex-1 text-center" style="padding: 12px; background: rgba(200,169,110,0.04); border-radius: 6px;">
+        <p class="muted" style="font-size: 11px;">被记住</p>
+      </div>
+      <div style="width: 32px;"></div>
+      <div class="flex-1 text-center" style="padding: 12px; background: rgba(200,169,110,0.04); border-radius: 6px;">
+        <p class="muted" style="font-size: 11px;">被复用</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 05  THREE LAYERS ============================== -->
+<section class="slide bg-surface">
+  <div class="slide-head">
+    <p class="num">04 / HIGHLIGHT CARD</p>
+    <h2>三层分离架构</h2>
+  </div>
+  <div class="slide-body gap-14 justify-center">
+    <div class="card-alt rounded" style="padding: 22px 28px; border-left: 5px solid #E8EDF4;">
+      <div class="row gap-16 items-center">
+        <p class="serif" style="font-size: 32px; font-weight: 700; color: rgba(232,237,244,0.25); min-width: 40px;">03</p>
+        <div>
+          <p class="white" style="font-size: 16px; font-weight: 700;">商品信息层</p>
+          <p class="dim" style="font-size: 11px; margin-top: 2px;">文字色值品牌化，信息架构不变</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-glow rounded" style="padding: 22px 28px; border-left: 5px solid #C8A96E;">
+      <div class="row gap-16 items-center">
+        <p class="serif" style="font-size: 32px; font-weight: 700; color: rgba(200,169,110,0.25); min-width: 40px;">02</p>
+        <div>
+          <p class="gold" style="font-size: 16px; font-weight: 700;">边框 / 腰封层</p>
+          <p class="muted" style="font-size: 11px; margin-top: 2px;">品牌辨识度核心载体</p>
+        </div>
+      </div>
+    </div>
+    <div class="card-alt rounded" style="padding: 22px 28px; border-left: 5px solid #2a5a9b;">
+      <div class="row gap-16 items-center">
+        <p class="serif" style="font-size: 32px; font-weight: 700; color: rgba(42,90,155,0.25); min-width: 40px;">01</p>
+        <div>
+          <p class="white" style="font-size: 16px; font-weight: 700;">背景层</p>
+          <p class="dim" style="font-size: 11px; margin-top: 2px;">纯色 / 渐变，成本最低</p>
+        </div>
+      </div>
+    </div>
+    <p class="dim text-center" style="font-size: 12px; margin-top: 8px;">品牌在不触碰信息架构的前提下，实现差异化表达</p>
+  </div>
+</section>
+
+<!-- ============================== 06  COMPONENTS ============================== -->
+<section class="slide bg-surface">
+  <div class="slide-head">
+    <p class="num">05 / IN-ROOM COMPONENTS</p>
+    <h2>间内 7 + 2 组件矩阵</h2>
+  </div>
+  <div class="slide-body gap-10 justify-center">
+    <div class="row resp gap-8 items-stretch">
+      <div class="card flex-1 col items-center text-center" style="padding: 18px 8px; gap: 6px;">
+        <p class="serif" style="font-size: 22px; font-weight: 700; color: rgba(200,169,110,0.2);">01</p>
+        <p class="white" style="font-size: 12px; font-weight: 700;">气泡卡</p>
+        <p class="dim" style="font-size: 9px;">最高频触点</p>
+      </div>
+      <div class="card flex-1 col items-center text-center" style="padding: 18px 8px; gap: 6px;">
+        <p class="serif" style="font-size: 22px; font-weight: 700; color: rgba(200,169,110,0.2);">02</p>
+        <p class="white" style="font-size: 12px; font-weight: 700;">点赞</p>
+        <p class="dim" style="font-size: 9px;">互动品牌化</p>
+      </div>
+      <div class="card flex-1 col items-center text-center" style="padding: 18px 8px; gap: 6px;">
+        <p class="serif" style="font-size: 22px; font-weight: 700; color: rgba(200,169,110,0.2);">03</p>
+        <p class="white" style="font-size: 12px; font-weight: 700;">货架Tab</p>
+        <p class="dim" style="font-size: 9px;">8 变体</p>
+      </div>
+      <div class="card flex-1 col items-center text-center" style="padding: 18px 8px; gap: 6px;">
+        <p class="serif" style="font-size: 22px; font-weight: 700; color: rgba(200,169,110,0.2);">04</p>
+        <p class="white" style="font-size: 12px; font-weight: 700;">Banner</p>
+        <p class="dim" style="font-size: 9px;">最大视觉面积</p>
+      </div>
+    </div>
+    <div class="row resp gap-8 items-stretch">
+      <div class="card flex-1 col items-center text-center" style="padding: 18px 8px; gap: 6px;">
+        <p class="serif" style="font-size: 22px; font-weight: 700; color: rgba(200,169,110,0.2);">05</p>
+        <p class="white" style="font-size: 12px; font-weight: 700;">商品卡</p>
+        <p class="dim" style="font-size: 9px;">三元素协同</p>
+      </div>
+      <div class="card flex-1 col items-center text-center" style="padding: 18px 8px; gap: 6px;">
+        <p class="serif" style="font-size: 22px; font-weight: 700; color: rgba(200,169,110,0.2);">06</p>
+        <p class="white" style="font-size: 12px; font-weight: 700;">下单图标</p>
+        <p class="dim" style="font-size: 9px;">交易反馈</p>
+      </div>
+      <div class="flex-1 col items-center text-center" style="padding: 18px 8px; gap: 6px; background: linear-gradient(135deg, #1a3a6b 0%, #111D30 100%); border-radius: 8px; border: 1px solid #C8A96E;">
+        <p class="serif" style="font-size: 22px; font-weight: 700; color: rgba(200,169,110,0.35);">07</p>
+        <p class="gold" style="font-size: 12px; font-weight: 700;">特殊时刻</p>
+        <p class="muted" style="font-size: 9px;">豪华 / 悬浮</p>
+      </div>
+      <div class="flex-1 col items-center text-center" style="padding: 18px 8px; gap: 6px; background: rgba(200,169,110,0.04); border-radius: 8px; border: 1px dashed #1E3454;">
+        <p class="gold" style="font-size: 10px; font-weight: 700;">NEW</p>
+        <p style="font-size: 11px; font-weight: 700;">进场特效</p>
+        <p style="font-size: 11px; font-weight: 700;">商品Live</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 07  BRANDS ============================== -->
+<section class="slide bg-surface">
+  <div class="slide-head">
+    <p class="num">06 / BRAND CASES</p>
+    <h2>品牌落地验证</h2>
+  </div>
+  <div class="slide-body">
+    <div class="row resp gap-20 items-stretch" style="flex: 1;">
+      <!-- 康师傅 -->
+      <div class="flex-1 col rounded" style="overflow: hidden; background: #111D30;">
+        <div class="text-center" style="background: linear-gradient(135deg, #E5241D 0%, #B81C16 100%); padding: 28px;">
+          <p class="serif" style="font-size: 24px; font-weight: 700; color: #FFFED9;">康师傅</p>
+          <p style="font-size: 11px; color: rgba(255,254,217,0.55); margin-top: 4px;">红色热烈主题</p>
+        </div>
+        <div class="col items-center" style="padding: 24px; gap: 12px;">
+          <div class="row gap-8">
+            <div style="width: 28px; height: 28px; background: #E5241D; border-radius: 6px;"></div>
+            <div style="width: 28px; height: 28px; background: #FFFED9; border-radius: 6px; border: 1px solid #1E3454;"></div>
+            <div style="width: 28px; height: 28px; background: #FF3E33; border-radius: 6px;"></div>
+          </div>
+          <p class="muted" style="font-size: 11px;">8 货架Tab · 全屏火焰特效</p>
+        </div>
+      </div>
+      <!-- 库迪 -->
+      <div class="flex-1 col rounded" style="overflow: hidden; background: #111D30;">
+        <div class="text-center" style="background: linear-gradient(135deg, #C47C42 0%, #EDBA79 100%); padding: 28px;">
+          <p class="serif" style="font-size: 24px; font-weight: 700; color: #fff;">库迪咖啡</p>
+          <p style="font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 4px;">金棕优雅主题</p>
+        </div>
+        <div class="col items-center" style="padding: 24px; gap: 12px;">
+          <div class="row gap-8">
+            <div style="width: 28px; height: 28px; background: #CB7F3C; border-radius: 6px;"></div>
+            <div style="width: 28px; height: 28px; background: #ffffff; border-radius: 6px; border: 1px solid #1E3454;"></div>
+            <div style="width: 28px; height: 28px; background: #653006; border-radius: 6px;"></div>
+          </div>
+          <p class="muted" style="font-size: 11px;">渐变背景 · 品质感腰封</p>
+        </div>
+      </div>
+    </div>
+    <p class="dim text-center" style="font-size: 11px; margin-top: 16px;">仅替换色值 + 素材，零结构改动 → 截然不同的品牌风格</p>
+  </div>
+</section>
+
+<!-- ============================== 08  PARAMETRIC ============================== -->
+<section class="slide bg-surface">
+  <div class="slide-head">
+    <p class="num">07 / PARAMETRIC</p>
+    <h2>参数化：从逐次定制到配置化</h2>
+  </div>
+  <div class="slide-body">
+    <div class="row resp gap-24 items-center" style="flex: 1;">
+      <div class="col flex-1 gap-20">
+        <div class="col gap-8">
+          <p class="dim" style="font-size: 11px;">BEFORE</p>
+          <div class="card-alt rounded" style="padding: 18px; border: 1px solid #1E3454;">
+            <p class="muted" style="font-size: 14px;">需求 → 出方案 → 确认 → 切图 → 配置</p>
+            <p class="serif dim" style="font-size: 24px; font-weight: 700; margin-top: 8px;">5-7 <span style="font-size: 14px;">天</span></p>
+          </div>
+        </div>
+        <div class="col gap-8">
+          <p class="gold" style="font-size: 11px;">AFTER</p>
+          <div class="card-glow rounded" style="padding: 18px; border: 1px solid #C8A96E;">
+            <p style="font-size: 14px;">素材 → 配置 → 走查</p>
+            <p class="serif gold" style="font-size: 24px; font-weight: 700; margin-top: 8px;">2 <span style="font-size: 14px;">天</span></p>
+          </div>
+        </div>
+      </div>
+      <div class="col items-center" style="width: 200px; gap: 8px;">
+        <p class="serif gold" style="font-size: 72px; font-weight: 700; line-height: 1;">65</p>
+        <p class="gold" style="font-size: 18px;">% 提效</p>
+        <div style="width: 40px; height: 2px; background: #1E3454; margin: 8px 0;"></div>
+        <p class="dim text-center" style="font-size: 11px;">约 15 个配置字段</p>
+        <p class="dim text-center" style="font-size: 11px;">零设计师介入</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 09  REVENUE ============================== -->
+<section class="slide bg-surface">
+  <div class="slide-head">
+    <p class="num">08 / RESULTS</p>
+    <h2>Q1 商业化成果</h2>
+  </div>
+  <div class="slide-body gap-16 justify-center">
+    <div class="row resp gap-16 items-stretch">
+      <div class="flex-1 col items-center justify-center rounded" style="padding: 28px; background: linear-gradient(160deg, #1a3a6b 0%, #111D30 100%); border: 1px solid #C8A96E;">
+        <p class="serif gold" style="font-size: 48px; font-weight: 700; line-height: 1;">215</p>
+        <p class="muted" style="font-size: 14px; margin-top: 4px;">万元总收入</p>
+      </div>
+      <div class="card flex-1 col items-center justify-center rounded" style="padding: 28px;">
+        <p class="serif" style="font-size: 48px; font-weight: 700; line-height: 1;">3000</p>
+        <p class="muted" style="font-size: 14px; margin-top: 4px;">万元行业创收</p>
+      </div>
+    </div>
+    <div class="row resp gap-10 items-stretch">
+      <div class="card flex-1 col items-center rounded" style="padding: 18px; gap: 4px; border-top: 3px solid #C8A96E;">
+        <p class="gold" style="font-size: 11px;">T1</p>
+        <p class="serif white" style="font-size: 20px; font-weight: 700;">25<span class="muted" style="font-size: 11px;">万/次</span></p>
+        <p class="dim" style="font-size: 9px;">全套换肤</p>
+      </div>
+      <div class="card flex-1 col items-center rounded" style="padding: 18px; gap: 4px; border-top: 3px solid #2a5a9b;">
+        <p style="font-size: 11px; color: #2a5a9b;">T2</p>
+        <p class="serif white" style="font-size: 20px; font-weight: 700;">12<span class="muted" style="font-size: 11px;">万/次</span></p>
+        <p class="dim" style="font-size: 9px;">商品皮肤</p>
+      </div>
+      <div class="card flex-1 col items-center rounded" style="padding: 18px; gap: 4px; border-top: 3px solid #5A7A9E;">
+        <p class="dim" style="font-size: 11px;">T3</p>
+        <p class="serif white" style="font-size: 20px; font-weight: 700;">6<span class="muted" style="font-size: 11px;">万/次</span></p>
+        <p class="dim" style="font-size: 9px;">基础曝光</p>
+      </div>
+      <div class="card-alt col items-center rounded" style="flex: 0.8; padding: 18px; gap: 6px; border: 1px solid #1E3454;">
+        <p class="gold" style="font-size: 11px; font-weight: 700;">年框</p>
+        <p style="font-size: 11px;">100 / 55 / 25</p>
+        <p class="dim" style="font-size: 9px;">万/年</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== 10  REFLECTION ============================== -->
+<section class="slide bg-surface">
+  <div class="slide-head">
+    <p class="num">09 / TAKEAWAYS</p>
+    <h2>方法论沉淀</h2>
+  </div>
+  <div class="slide-body gap-14 justify-center">
+    <div class="row resp gap-14 items-stretch">
+      <div class="card flex-1" style="padding: 22px; border-left: 3px solid #C8A96E;">
+        <p class="gold" style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">三层分离架构</p>
+        <p class="muted" style="font-size: 11px; line-height: 1.6;">分层解耦 = 表达力 + 稳定性并存</p>
+      </div>
+      <div class="card flex-1" style="padding: 22px; border-left: 3px solid #2a5a9b;">
+        <p class="white" style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">参数化配置</p>
+        <p class="muted" style="font-size: 11px; line-height: 1.6;">组件 × 参数 × 规范 = 零介入接入</p>
+      </div>
+    </div>
+    <div class="row resp gap-14 items-stretch">
+      <div class="card flex-1" style="padding: 22px; border-left: 3px solid #E8EDF4;">
+        <p class="white" style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">正反面案例库</p>
+        <p class="muted" style="font-size: 11px; line-height: 1.6;">走查标准 + 培训素材</p>
+      </div>
+      <div class="card-glow flex-1" style="padding: 22px; border: 1px solid #C8A96E; border-radius: 8px;">
+        <p class="gold" style="font-size: 14px; font-weight: 700; margin-bottom: 8px;">表现力分级</p>
+        <p class="muted" style="font-size: 11px; line-height: 1.6;">同一组件适配不同商业层级</p>
+      </div>
+    </div>
+    <p class="dim text-center" style="font-size: 12px; margin-top: 8px;">从"设计服务" → "设计基础设施"</p>
+  </div>
+</section>
+
+<!-- ============================== 11  END ============================== -->
+<section class="slide bg-grad center-xy" style="min-height: 540px;">
+  <div class="corner-tl"></div>
+  <div class="corner-br"></div>
+  <div class="col items-center gap-20">
+    <p class="serif white" style="font-size: 40px; font-weight: 700;">Thank You</p>
+    <div style="width: 48px; height: 2px; background: #C8A96E;"></div>
+    <p class="serif dim" style="font-size: 16px;">直播品牌主题化</p>
+    <p class="dim" style="font-size: 11px;">美团平台设计中心 · 2026</p>
+  </div>
+</section>
+
+</body>
+</html>

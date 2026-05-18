@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>直播品牌主题化 — 作品集</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { height: 100%; overflow: hidden; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background: #0A1628;
+      color: #E8EDF4;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Tab Bar ── */
+    .tab-bar {
+      display: flex;
+      align-items: center;
+      background: #060a10;
+      border-bottom: 1px solid #1E3454;
+      padding: 0 24px;
+      flex-shrink: 0;
+      height: 52px;
+      gap: 0;
+    }
+    .tab-bar .logo {
+      font-family: Georgia, serif;
+      font-size: 14px;
+      color: #C8A96E;
+      margin-right: 32px;
+      letter-spacing: 1px;
+      white-space: nowrap;
+    }
+    .tab-btn {
+      position: relative;
+      background: none;
+      border: none;
+      color: #5A7A9E;
+      font-size: 14px;
+      padding: 14px 20px;
+      cursor: pointer;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .tab-btn:hover { color: #8BA4C4; }
+    .tab-btn.active {
+      color: #E8EDF4;
+      font-weight: 600;
+    }
+    .tab-btn.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 20px; right: 20px;
+      height: 2px;
+      background: #C8A96E;
+      border-radius: 1px;
+    }
+
+    /* ── Content ── */
+    .tab-content {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+    }
+    .tab-content iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+    .tab-content iframe.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="tab-bar">
+    <span class="logo">直播品牌主题化</span>
+    <button class="tab-btn active" data-target="original">原文文档</button>
+    <button class="tab-btn" data-target="presentation">精简展示版</button>
+  </div>
+
+  <div class="tab-content">
+    <iframe id="original" src="original.html" class="active"></iframe>
+    <iframe id="presentation" src="presentation.html"></iframe>
+  </div>
+
+  <script>
+    const btns = document.querySelectorAll('.tab-btn');
+    const frames = document.querySelectorAll('.tab-content iframe');
+
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('active'));
+        frames.forEach(f => f.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById(btn.dataset.target).classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>
